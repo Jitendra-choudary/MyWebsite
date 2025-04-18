@@ -1,66 +1,61 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Articles | Jitendra Choudary</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
-    <link rel="icon" type="image/png" href="favicon.png" />
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
+    <script>
+        function toggleReadMore(articleId) {
+            var content = document.getElementById(articleId);
+            var btn = document.getElementById('btn-' + articleId);
+            if (content.style.display === "none") {
+                content.style.display = "block";
+                btn.innerText = "Read less";
+            } else {
+                content.style.display = "none";
+                btn.innerText = "Read more";
+            }
+        }
+    </script>
 </head>
-<body class="bg-gray-50 text-gray-900 font-sans">
-    <header class="bg-blue-900 text-white">
-        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
-            <ul class="flex space-x-6">
-                <li><a href="index.html" class="hover:underline">Home</a></li>
-                <li><a href="articles.html" class="underline font-semibold">Articles</a></li>
-                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+<body>
+    <header class="site-header">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="articles.html" class="active">Articles</a></li>
+                <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
-
-    <main class="max-w-6xl mx-auto p-6" x-data="{ articles: [
-        {
-            id: 1,
-            title: 'Understanding Web Development',
-            date: 'April 10, 2025',
-            summary: 'Web development is an ever-evolving field that combines creativity and technical skills. In this article, I delve into the basics of building modern websites...',
-            likes: 0,
-            dislikes: 0
-        },
-        {
-            id: 2,
-            title: 'The Importance of Minimalist Design',
-            date: 'March 25, 2025',
-            summary: 'Minimalist design is not just a trend—it\'s a philosophy that emphasizes clarity and purpose. Learn how simplicity can enhance user experience...',
-            likes: 0,
-            dislikes: 0
-        }
-    ] }">
-        <section class="mb-12">
-            <h1 class="text-3xl font-bold mb-6 text-center">Latest Articles</h1>
-            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
-                <template x-for="article in articles" :key="article.id">
-                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col justify-between">
-                        <div>
-                            <h2 class="text-xl font-semibold mb-1" x-text="article.title"></h2>
-                            <p class="text-sm text-gray-500 mb-3" x-text="article.date"></p>
-                            <p class="mb-4" x-text="article.summary"></p>
-                        </div>
-                        <div class="flex justify-between items-center">
-                            <a href="#" class="text-blue-600 hover:underline font-medium">Read more</a>
-                            <div class="flex gap-3 text-gray-700">
-                                <button @click="article.likes++" class="hover:text-green-600">👍 <span x-text="article.likes"></span></button>
-                                <button @click="article.dislikes++" class="hover:text-red-600">👎 <span x-text="article.dislikes"></span></button>
-                            </div>
-                        </div>
+    <main>
+        <section class="articles">
+            <h1>Latest Articles</h1>
+            <div class="articles-list">
+                <div class="article-card">
+                    <h2>Understanding Web Development</h2>
+                    <p class="date">April 10, 2025</p>
+                    <p>Web development is an ever-evolving field that combines creativity and technical skills. In this article, I delve into the basics of building modern websites...</p>
+                    <div id="content-1" style="display:none;">
+                        <p>This is the expanded content for the article. Here, you can explain more technical details, share images, or provide any other additional information.</p>
                     </div>
-                </template>
+                    <button id="btn-content-1" class="read-more" onclick="toggleReadMore('content-1')">Read more</button>
+                </div>
+                <div class="article-card">
+                    <h2>The Importance of Minimalist Design</h2>
+                    <p class="date">March 25, 2025</p>
+                    <p>Minimalist design is not just a trend—it's a philosophy that emphasizes clarity and purpose. Learn how simplicity can enhance user experience...</p>
+                    <div id="content-2" style="display:none;">
+                        <p>This is the expanded content for the article. Here, you can dive deeper into minimalist design principles, showcase examples, and offer practical advice.</p>
+                    </div>
+                    <button id="btn-content-2" class="read-more" onclick="toggleReadMore('content-2')">Read more</button>
+                </div>
             </div>
         </section>
     </main>
-
-    <footer class="bg-blue-900 text-white text-center py-4 mt-10">
+    <footer>
         <p>&copy; 2025 Jitendra Choudary. All rights reserved.</p>
     </footer>
 </body>
