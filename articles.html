@@ -1,77 +1,67 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Jitendra Choudary | Articles</title>
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css">
-  <script defer src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js"></script>
-  <script defer src="script.js"></script>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Articles | Jitendra Choudary</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    <link rel="icon" type="image/png" href="favicon.png" />
 </head>
-<body class="bg-gray-100 text-gray-900">
-  <header class="bg-blue-900 text-white p-4 shadow">
-    <nav class="max-w-5xl mx-auto flex justify-between items-center">
-      <div class="text-xl font-bold">Jitendra</div>
-      <ul class="flex space-x-6">
-        <li><a href="index.html" class="hover:underline">Home</a></li>
-        <li><a href="articles.html" class="underline">Articles</a></li>
-        <li><a href="contact.html" class="hover:underline">Contact</a></li>
-      </ul>
-    </nav>
-  </header>
+<body class="bg-gray-50 text-gray-900 font-sans">
+    <header class="bg-blue-900 text-white">
+        <nav class="max-w-6xl mx-auto px-4 py-4 flex justify-between items-center">
+            <ul class="flex space-x-6">
+                <li><a href="index.html" class="hover:underline">Home</a></li>
+                <li><a href="articles.html" class="underline font-semibold">Articles</a></li>
+                <li><a href="contact.html" class="hover:underline">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
 
-  <main class="max-w-4xl mx-auto p-6">
-    <h1 class="text-3xl font-semibold mb-4">Latest Articles</h1>
-    <div id="articles-container" class="grid md:grid-cols-2 gap-6"></div>
-  </main>
+    <main class="max-w-6xl mx-auto p-6" x-data="{ articles: [
+        {
+            id: 1,
+            title: 'Understanding Web Development',
+            date: 'April 10, 2025',
+            summary: 'Web development is an ever-evolving field that combines creativity and technical skills. In this article, I delve into the basics of building modern websites...',
+            likes: 0,
+            dislikes: 0
+        },
+        {
+            id: 2,
+            title: 'The Importance of Minimalist Design',
+            date: 'March 25, 2025',
+            summary: 'Minimalist design is not just a trend—it\'s a philosophy that emphasizes clarity and purpose. Learn how simplicity can enhance user experience...',
+            likes: 0,
+            dislikes: 0
+        }
+    ] }">
+        <section class="mb-12">
+            <h1 class="text-3xl font-bold mb-6 text-center">Latest Articles</h1>
+            <div class="grid sm:grid-cols-1 md:grid-cols-2 gap-8">
+                <template x-for="article in articles" :key="article.id">
+                    <div class="bg-white rounded-xl shadow-md p-6 flex flex-col justify-between">
+                        <div>
+                            <h2 class="text-xl font-semibold mb-1" x-text="article.title"></h2>
+                            <p class="text-sm text-gray-500 mb-3" x-text="article.date"></p>
+                            <p class="mb-4" x-text="article.summary"></p>
+                        </div>
+                        <div class="flex justify-between items-center">
+                            <a href="#" class="text-blue-600 hover:underline font-medium">Read more</a>
+                            <div class="flex gap-3 text-gray-700">
+                                <button @click="article.likes++" class="hover:text-green-600">👍 <span x-text="article.likes"></span></button>
+                                <button @click="article.dislikes++" class="hover:text-red-600">👎 <span x-text="article.dislikes"></span></button>
+                            </div>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </section>
+    </main>
 
-  <footer class="bg-blue-900 text-white text-center p-4 mt-12">
-    &copy; 2025 Jitendra Choudary. All rights reserved.
-  </footer>
-
-  <script>
-    const articles = [
-      {
-        title: "Understanding Web Development",
-        date: "April 10, 2025",
-        snippet: "Web development is an ever-evolving field that combines creativity and technical skills...",
-        likes: 0,
-        dislikes: 0
-      },
-      {
-        title: "The Importance of Minimalist Design",
-        date: "March 25, 2025",
-        snippet: "Minimalist design is not just a trend—it's a philosophy that emphasizes clarity and purpose...",
-        likes: 0,
-        dislikes: 0
-      }
-    ];
-
-    const container = document.getElementById('articles-container');
-    articles.forEach((article, i) => {
-      const card = document.createElement('div');
-      card.className = "bg-white p-4 rounded shadow";
-      card.innerHTML = `
-        <h2 class="text-xl font-bold mb-2">${article.title}</h2>
-        <p class="text-sm text-gray-600 mb-2">${article.date}</p>
-        <p class="mb-3">${article.snippet}</p>
-        <div class="flex gap-4">
-          <button onclick="likeArticle(${i})" class="text-green-600 hover:underline">👍 Like (<span id="like-${i}">${article.likes}</span>)</button>
-          <button onclick="dislikeArticle(${i})" class="text-red-600 hover:underline">👎 Dislike (<span id="dislike-${i}">${article.dislikes}</span>)</button>
-        </div>
-      `;
-      container.appendChild(card);
-    });
-
-    function likeArticle(index) {
-      articles[index].likes++;
-      document.getElementById(`like-${index}`).textContent = articles[index].likes;
-    }
-
-    function dislikeArticle(index) {
-      articles[index].dislikes++;
-      document.getElementById(`dislike-${index}`).textContent = articles[index].dislikes;
-    }
-  </script>
+    <footer class="bg-blue-900 text-white text-center py-4 mt-10">
+        <p>&copy; 2025 Jitendra Choudary. All rights reserved.</p>
+    </footer>
 </body>
 </html>
