@@ -3,34 +3,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Articles - My Personal Website</title>
+    <title>Articles | Jitendra Choudary</title>
     <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="favicon.png">
 </head>
 <body>
-    <header>
+    <header class="site-header">
         <nav>
             <ul>
                 <li><a href="index.html">Home</a></li>
-                <li><a href="articles.html">Articles</a></li>
+                <li><a href="articles.html" class="active">Articles</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
         </nav>
     </header>
     <main>
         <section class="articles">
-            <h1>Articles</h1>
-            <article>
-                <h2>Understanding Web Development</h2>
-                <p>Published on April 10, 2025</p>
-                <p>Web development is an ever-evolving field that combines creativity and technical skills. In this article, I delve into the basics of building modern websites...</p>
-                <a href="#">Read more</a>
-            </article>
-            <article>
-                <h2>The Importance of Minimalist Design</h2>
-                <p>Published on March 25, 2025</p>
-                <p>Minimalist design is not just a trend—it's a philosophy that emphasizes clarity and purpose. Learn how simplicity can enhance user experience...</p>
-                <a href="#">Read more</a>
-            </article>
+            <h1>Latest Articles</h1>
+            <div class="articles-list">
+                <div class="article-card">
+                    <h2>Understanding Web Development</h2>
+                    <p class="date">April 10, 2025</p>
+                    <p>Web development is an ever-evolving field that combines creativity and technical skills. In this article, I delve into the basics of building modern websites...</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+                <div class="article-card">
+                    <h2>The Importance of Minimalist Design</h2>
+                    <p class="date">March 25, 2025</p>
+                    <p>Minimalist design is not just a trend—it's a philosophy that emphasizes clarity and purpose. Learn how simplicity can enhance user experience...</p>
+                    <a href="#" class="read-more">Read more</a>
+                </div>
+            </div>
         </section>
     </main>
     <footer>
